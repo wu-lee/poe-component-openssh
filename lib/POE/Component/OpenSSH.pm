@@ -33,6 +33,7 @@ sub _build_object {
         debug          => $self->debug,
         verbose        => $self->verbose,
         error          => $self->error,
+        options        => $self->options,
     );
 
     return $object;
