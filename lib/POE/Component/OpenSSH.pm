@@ -95,6 +95,7 @@ Here is a more elaborate example using L<MooseX::POE>:
 
     package Runner;
     use MooseX::POE;
+    use POE::Component::Generic;
 
     has 'host' => ( is => 'ro', isa => 'Str', default => 'localhost' );
     has 'user' => ( is => 'ro', isa => 'Str', default => 'root'      );
@@ -111,11 +112,11 @@ Here is a more elaborate example using L<MooseX::POE>:
             ],
         );
 
-        $ssh->capture( { event => 'parse_cmd' }, $cmd );
+        $ssh->capture( { event => 'parse_cmd' }, $self->cmd );
     }
 
     event 'parse_cmd' => sub {
-        my ( $self, $output ) @_[ OBJECT, ARG1 ];
+        my ( $self, $output ) = @_[ OBJECT, ARG1 ];
         my $host = $self->host;
         print "[$host]: $output";
     };
