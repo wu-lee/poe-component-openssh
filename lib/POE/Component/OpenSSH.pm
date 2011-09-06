@@ -26,7 +26,6 @@ has 'object' => (
 sub _build_object {
     my $self = shift;
 
-    my @optional = ( qw( alias debug verbose options ) );
     my $object   = POE::Component::Generic->spawn(
         alias          => $self->alias,
         package        => 'Net::OpenSSH',
